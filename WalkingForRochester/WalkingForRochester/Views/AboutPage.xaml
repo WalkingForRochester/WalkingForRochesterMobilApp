@@ -1,0 +1,374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WalkingForRochester.Views.AboutPage"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Shell.TabBarIsVisible="false"
+             Title="ABOUT US"
+             Visual="Material">
+
+    <!--         Authors: 
+                NTID MAD TEAM
+                    Mangers:        Xiangyu Shi
+                                    Michelle Olson
+    
+                    Programmer:     Xiangyu Shi,
+                                    Michelle Olson
+                                    Zhencheng Chen,
+                                    Harsh Mathur,
+                                    Quoc Nhan,
+                                    Chase Roth  -->
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundImageSource" Value="background.png"/>
+            </Style>
+            <Color x:Key="textBackground">#4a3787</Color>
+
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource textBackground}" />
+                <Setter Property="Margin" Value="20" />
+                <Setter Property="CornerRadius" Value="15" />
+            </Style>
+
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="TextColor" Value="Black" />
+            </Style>
+
+            <Style x:Key="personLabel" TargetType="Label">
+                <Setter Property="Padding" Value="10,0" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+            <Style TargetType="ImageButton">
+                <Setter Property="HeightRequest" Value="50" />
+                <Setter Property="WidthRequest" Value="50" />
+                <Setter Property="Margin" Value="20,-20,5,0" />
+                <Setter Property="Padding" Value="0,10,0,0" />
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="Source" Value="linkedin.png" />
+                <Setter Property="HorizontalOptions" Value="End" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!-- Image-->
+                <Image Source="aboutUs.png" />
+
+                <!-- Mission statement -->
+                <Frame Margin="20, -70,20,0"
+                       Padding="20">
+                    <Label
+                        x:Name="Label1"
+                        BackgroundColor="{StaticResource textBackground}"
+                        TextColor="White" />
+                </Frame>
+
+                <!-- Matthew Apple's statement-->
+                <Frame
+                    Padding="20">
+                    <Label
+                        x:Name="Label2"
+                        BackgroundColor="{StaticResource textBackground}"
+                        TextColor="White" />
+                </Frame>
+                
+                <Frame BackgroundColor="#EE6700">
+                    <StackLayout>
+                        <Label Text="Rochester Institute of Technology "
+                               TextColor="White"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               FontSize="32"
+                               VerticalOptions="CenterAndExpand" />
+                        <Label Text="National Technical Institute of the Deaf"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               FontSize="20"
+                               VerticalOptions="CenterAndExpand" />
+                        <Label Text="Mobile Application Development Teams"
+                               TextColor="White"
+                               HorizontalTextAlignment="Center"
+                               VerticalTextAlignment="Center"
+                               FontSize="16"
+                               VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+
+                </Frame>
+
+                <!--pancake view to the team section-->
+                <!--background for the team section acting as border-->
+
+                <yummy:PancakeView HorizontalOptions="FillAndExpand"
+                                   CornerRadius="20"
+                                   BackgroundGradientStartPoint="0,0"
+                                   BackgroundGradientEndPoint="0,1"
+                                   Shadow="{yummy:ShadowMarkup Color=Black, Offset='10,10'}"
+                                   Margin="10,10">
+                    <yummy:PancakeView.BackgroundGradientStops>
+                        <yummy:GradientStopCollection>
+                            <yummy:GradientStop Color="Red" Offset="0" />
+                            <yummy:GradientStop Color="Orange" Offset=".12" />
+                            <yummy:GradientStop Color="Yellow" Offset=".24" />
+                            <yummy:GradientStop Color="LightGreen" Offset=".36" />
+                            <yummy:GradientStop Color="SkyBlue" Offset=".48" />
+                            <yummy:GradientStop Color="RoyalBlue" Offset=".59" />
+                            <yummy:GradientStop Color="{StaticResource textBackground}" Offset="1" />
+
+                        </yummy:GradientStopCollection>
+                    </yummy:PancakeView.BackgroundGradientStops>
+
+                    <Frame BackgroundColor="White"
+                           Padding="20">
+                        <Grid RowSpacing="20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+                                <RowDefinition Height="auto" />
+
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Xiangyu Shi row 0-->
+                            <!-- color box-->
+                            <BoxView Color="Black"
+                                     Margin="0,0,0,-5"
+                                     Grid.RowSpan="2"
+                                     Grid.ColumnSpan="2" />
+                            <BoxView Color="white"
+                                     Grid.RowSpan="2"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0" />
+                            <!-- information-->
+                            <Label Style="{StaticResource personLabel}"
+                                   Text="Xiangyu Shi"
+                                   HeightRequest="70" />
+                            <Label Text="Project Manager/Programmer"
+                                   Style="{StaticResource personLabel}"
+                                   FontSize="15"
+                                   Grid.Row="1"
+                                   Margin="20,-50,0,0"
+                                   VerticalOptions="Start"
+                                   HorizontalOptions="Start" />
+                            <ImageButton x:Name="XiangyuLinkedlnButton"
+                                         Clicked="XiangyuLinkedlnButton_Clicked"
+                                         Grid.Row="0"
+                                         Grid.Column="1"
+                                         Grid.RowSpan="2" />
+
+                            <!-- COLTON BALIFF row 2-->
+                            <!-- color box-->
+                            <BoxView Color="Black"
+                                     Grid.Row="2"
+                                     Grid.RowSpan="2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0,0,0,-5" />
+                            <BoxView Color="white"
+                                     Grid.RowSpan="2"
+                                     Grid.Row="2"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0" />
+                            <!-- information-->
+                            <Label Style="{StaticResource personLabel}"
+                                   Text="Colton Baliff"
+                                   Grid.Row="2"
+                                   HeightRequest="70" />
+                            <Label Text="UI/UX Designer"
+                                   Style="{StaticResource personLabel}"
+                                   FontSize="15"
+                                   Grid.Row="3"
+                                   Margin="20,-50,0,0"
+                                   VerticalOptions="StartAndExpand" />
+                            <ImageButton x:Name="ColtonLinkedlnButton"
+                                         Clicked="ColtonLinkedlnButton_Clicked"
+                                         Grid.Row="2"
+                                         Grid.Column="1"
+                                         Grid.RowSpan="2" />
+
+
+                            <!-- ZHENCHENG CHEN row 4-->
+                            <!-- color box-->
+                            <BoxView Color="Black"
+                                     Grid.Row="4"
+                                     Grid.RowSpan="2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0,0,0,-5" />
+                            <BoxView Color="white"
+                                     Grid.Row="4"
+                                     Grid.RowSpan="2"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0" />
+                            <!-- information-->
+                            <Label Style="{StaticResource personLabel}"
+                                   Text="Zhencheng Chen"
+                                   Grid.Row="4"
+                                   HeightRequest="70" />
+                            <Label Text="Programmer"
+                                   Style="{StaticResource personLabel}"
+                                   FontSize="15"
+                                   Grid.Row="5"
+                                   Margin="20,-50,0,0"
+                                   Padding="10,0"
+                                   VerticalOptions="Start" />
+                            <ImageButton x:Name="ZhenchengLinkedlnButton"
+                                         Clicked="ZhenchengLinkedlnButton_Clicked"
+                                         Grid.Row="4"
+                                         Grid.Column="1"
+                                         Grid.RowSpan="2" />
+
+                            <!-- Harsh Mathur row 6-->
+                            <!-- color box-->
+                            <BoxView Color="Black"
+                                     Grid.Row="6"
+                                     Grid.RowSpan="2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0,0,0,-5" />
+                            <BoxView Color="white"
+                                     Grid.Row="6"
+                                     Grid.RowSpan="2"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0" />
+                            <!-- information-->
+                            <Label Style="{StaticResource personLabel}"
+                                   Text="Harsh Mathur"
+                                   Grid.Row="6"
+                                   HeightRequest="70" />
+                            <Label Text="UI/UX Designer"
+                                   Style="{StaticResource personLabel}"
+                                   FontSize="15"
+                                   Grid.Row="7"
+                                   Margin="20,-50,0,0"
+                                   VerticalOptions="StartAndExpand" />
+                            <ImageButton x:Name="HarshLinkedlnButton"
+                                         Clicked="HarshLinkedlnButton_Clicked"
+                                         Grid.Row="6"
+                                         Grid.Column="1"
+                                         Grid.RowSpan="2" />
+
+                            <!-- Quoc Nhan row 8-->
+                            <!-- color box-->
+                            <BoxView Color="Black"
+                                     Grid.Row="8"
+                                     Grid.RowSpan="2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0,0,0,-5" />
+                            <BoxView Color="white"
+                                     Grid.Row="8"
+                                     Grid.RowSpan="2"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0" />
+                            <!-- information-->
+                            <Label Style="{StaticResource personLabel}"
+                                   Text="Quoc Nhan"
+                                   Grid.Row="8"
+                                   HeightRequest="70" />
+                            <Label Text="Programmer"
+                                   Style="{StaticResource personLabel}"
+                                   FontSize="15"
+                                   Grid.Row="9"
+                                   Margin="20,-50,0,0"
+                                   Padding="10,0"
+                                   VerticalOptions="Start" />
+                            <ImageButton x:Name="QuocLinkedInButton"
+                                         Clicked="QuocLinkedInButton_Clicked"
+                                         Grid.Row="8"
+                                         Grid.Column="1"
+                                         Grid.RowSpan="2" />
+
+                            <!-- Michelle Olson row 10-->
+                            <!-- color box-->
+                            <BoxView Color="Black"
+                                     Grid.Row="10"
+                                     Grid.RowSpan="2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0,0,0,-5" />
+                            <BoxView Color="white"
+                                     Grid.Row="10"
+                                     Grid.RowSpan="2"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0" />
+                            <!-- information-->
+                            <Label Style="{StaticResource personLabel}"
+                                   Text="Michelle Olson"
+                                   Grid.Row="10"
+                                   HeightRequest="70" />
+                            <Label Text="UI/UX Designer/Programmer"
+                                   Style="{StaticResource personLabel}"
+                                   FontSize="15"
+                                   Grid.Row="11"
+                                   Margin="20,-50,0,0"
+                                   VerticalOptions="StartAndExpand" />
+                            <ImageButton x:Name="MichelleLinkedlnButton"
+                                         Clicked="MichelleLinkedlnButton_Clicked"
+                                         Grid.Row="10"
+                                         Grid.Column="1"
+                                         Grid.RowSpan="2" />
+
+
+                            <!-- Chase Roth row 12-->
+                            <!-- color box-->
+                            <BoxView Color="Black"
+                                     Grid.Row="12"
+                                     Grid.RowSpan="2"
+                                     Grid.Column="0"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0,0,0,-5" />
+                            <BoxView Color="white"
+                                     Grid.Row="12"
+                                     Grid.RowSpan="2"
+                                     Grid.ColumnSpan="2"
+                                     Margin="0" />
+                            <!-- information-->
+                            <Label Style="{StaticResource personLabel}"
+                                   Text="Chase Roth"
+                                   Grid.Row="12"
+                                   HeightRequest="70" />
+                            <Label Text="Programmer"
+                                   Style="{StaticResource personLabel}"
+                                   FontSize="15"
+                                   Grid.Row="13"
+                                   Margin="20,-50,0,0"
+                                   Padding="10,0"
+                                   VerticalOptions="Start" />
+                            <ImageButton x:Name="RothLinkedInButton"
+                                         Clicked="RothLinkedInButton_Clicked"
+                                         Grid.Row="12"
+                                         Grid.Column="1"
+                                         Grid.RowSpan="2" />
+
+
+                        </Grid>
+                    </Frame>
+                </yummy:PancakeView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

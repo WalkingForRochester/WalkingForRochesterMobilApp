@@ -1,0 +1,156 @@
+﻿<?xml version = "1.0"
+      encoding = "utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="WalkingForRochester.Views.EditPage"
+             xmlns:vm="clr-namespace:WalkingForRochester.ViewModels;assembly=WalkingForRochester"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             Shell.TabBarIsVisible="false"
+             Title="Edit Profile Page"
+             Visual="Material" >
+    <!--         Authors: 
+                NTID MAD TEAM
+                    Mangers:        Xiangyu Shi
+                                    Michelle Olson
+    
+                    Programmer:     Xiangyu Shi,
+                                    Michelle Olson
+                                    Zhencheng Chen,
+                                    Harsh Mathur,
+                                    Quoc Nhan,
+                                    Chase Roth  -->
+
+    <ContentPage.BindingContext>
+        <vm:EditProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundImageSource" Value="background.png"/>
+            </Style>
+            <Style TargetType="Label" >
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=Black}"/>
+                <Setter Property="Padding" Value="10" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+            
+            <Style TargetType="Entry" >
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=Black}"/>
+                <Setter Property="PlaceholderColor" Value="gray" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="HorizontalTextAlignment" Value="Center" />
+                <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+
+            <Style x:Key="FrameStyle" TargetType="Frame" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=White}"/>
+                <Setter Property="BorderColor" Value="Transparent" />
+                <Setter Property="Margin" Value="10" />
+            </Style>
+            
+            <Style TargetType="Frame" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=White}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame
+                    Style="{StaticResource FrameStyle}"
+                    CornerRadius="10" >
+                    <!--avator img  how to let user change image??-->
+                    <StackLayout>
+                        <Frame
+                            Style="{StaticResource FrameStyle}"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            HasShadow="False" >
+                            <StackLayout>
+                                <Frame
+                                    HasShadow="False"
+                                    Style="{StaticResource FrameStyle}" >
+                                    <Grid>
+                                        <ff:CachedImage
+                                            Source="{Binding ImgSource}"
+                                            Aspect="AspectFit"
+                                            WidthRequest="100"
+                                            HeightRequest="100" >
+                                            <ff:CachedImage.Transformations>
+                                                <fft:CircleTransformation />
+                                            </ff:CachedImage.Transformations>
+                                        </ff:CachedImage>
+                                        <ImageButton
+                                            Grid.Row="0"
+                                            BackgroundColor="Transparent"
+                                            Command="{Binding MediaCommand}" />
+                                    </Grid>
+                                </Frame>
+                                <Label
+                                    Text="Click image"
+                                    HorizontalOptions="Center"
+                                    FontSize="14"
+                                    Margin="0,-30,0,0" />
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- nickname-->
+                        <Frame>
+                            <StackLayout>
+                                <Entry
+                                    Text="{Binding Nickname}"
+                                    Placeholder="Nickname"
+                                    Keyboard="Plain"
+                                    ClearButtonVisibility="WhileEditing"
+                                    MaxLength="50" />
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- email -->
+                        <Frame>
+                            <StackLayout>
+                                <Entry
+                                    Text="{Binding Email}"
+                                    Placeholder="Email Address"
+                                    Keyboard="Email"
+                                    ClearButtonVisibility="WhileEditing"
+                                    MaxLength="50" />
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- phone number-->
+                        <Frame>
+                            <StackLayout>
+                                <Entry
+                                    Text="{Binding Phone}"
+                                    Placeholder="Phone Number"
+                                    Keyboard="Telephone"
+                                    ClearButtonVisibility="WhileEditing"
+                                    MaxLength="10" />
+                            </StackLayout>
+                        </Frame>
+
+                        <!-- frame for button to upload the update information-->
+                        <Frame
+                            Style="{StaticResource FrameStyle}"
+                            Padding="0"
+                            HasShadow="False" >
+                            <Button
+                                Text="Upload"
+                                BackgroundColor="#009966"
+                                Command="{Binding UploadCommand}" />
+                        </Frame>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,125 @@
+﻿<?xml version = "1.0"
+      encoding = "utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WalkingForRochester.Views.ArticlePage"
+             xmlns:vm="clr-namespace:WalkingForRochester.ViewModels;assembly=WalkingForRochester"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             Shell.TabBarIsVisible="false"
+             Title="POST NEW BLOG"
+             Visual="Material" >
+    <!--         Authors: 
+                NTID MAD TEAM
+                    Mangers:        Xiangyu Shi
+                                    Michelle Olson
+    
+                    Programmer:     Xiangyu Shi,
+                                    Michelle Olson
+                                    Zhencheng Chen,
+                                    Harsh Mathur,
+                                    Quoc Nhan,
+                                    Chase Roth  -->
+
+    <ContentPage.BindingContext>
+        <vm:ArticleViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundImageSource" Value="background.png"/>
+            </Style>
+            <Color x:Key="IconFgColor" >white</Color>
+
+            <Style x:Key="MaterialIcons" TargetType="{x:Type Label}" >
+                <Setter Property="FontFamily" Value="CustomMaterialFont" />
+                <Setter Property="FontSize" Value="100" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="{DynamicResource IconFgColor}" />
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
+
+            <Style TargetType="DatePicker" >
+                <Setter Property="BackgroundColor" Value="{OnPlatform iOS=White}" />
+            </Style>
+            <Style TargetType="Label" >
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=Black}"/>
+            </Style>
+            <Style TargetType="Frame" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=White}"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+
+    <!-- This is intend for admin to publish news -->
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout.Padding>
+                    <OnPlatform x:TypeArguments="Thickness" >
+                        <On Platform="iOS" Value="20,20,20,0" />
+                        <On Platform="Android" Value="20,20,20,20" />
+                    </OnPlatform>
+                </StackLayout.Padding>
+
+                <Frame BackgroundColor="#DD272765" >
+                    <StackLayout Padding="20,40,20,10" >
+                        <Label Text="Post new Blog" FontSize="30" HorizontalTextAlignment="Center" TextColor="White" />
+                        <BoxView HeightRequest="2" Color="LightGray" />
+                    </StackLayout>
+                </Frame>
+                <Entry
+                    Placeholder="Title"
+                    BackgroundColor="White"
+                    Text="{Binding ArticleTitle}"
+                    ReturnType="Next" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Entry
+                        Placeholder="Author"
+                        BackgroundColor="White"
+                        Text="{Binding ArticleAuthor}"
+                        ReturnType="Next"
+                        HorizontalOptions="FillAndExpand" />
+                    <Frame Grid.Column="1" Padding="{OnPlatform Android=0, iOS=5}" >
+                        <DatePicker
+                            BackgroundColor="White"
+                            Date="{Binding ArticleDate}" />
+                    </Frame>
+                </Grid>
+                <Grid HeightRequest="200" >
+                    <ImageButton
+                        Aspect="AspectFit"
+                        BackgroundColor="White"
+                        Source="{Binding ImageSource}"
+                        Command="{Binding MediaCommand}" />
+                </Grid>
+                <Frame Padding="5" HasShadow="False" >
+                    <Editor
+                        Placeholder="Content"
+                        AutoSize="TextChanges"
+                        BackgroundColor="White"
+                        Text="{Binding ArticleContent}" />
+                </Frame>
+                <Frame Padding="5" HasShadow="False" >
+                    <material:MaterialButton
+                        Text="Save"
+                        HeightRequest="60"
+                        BackgroundColor="MediumSeaGreen"
+                        Command="{Binding ArticleSaveCommand}" />
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

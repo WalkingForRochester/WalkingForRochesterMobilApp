@@ -1,0 +1,158 @@
+﻿<?xml version = "1.0"
+      encoding = "utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WalkingForRochester.Views.LoginPage"
+             xmlns:vm="clr-namespace:WalkingForRochester.ViewModels;assembly=WalkingForRochester"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:system="clr-namespace:System;assembly=mscorlib"
+             ios:Page.PrefersStatusBarHidden="True" >
+    <!--         Authors: 
+                NTID MAD TEAM
+                    Mangers:        Xiangyu Shi
+                                    Michelle Olson
+    
+                    Programmer:     Xiangyu Shi,
+                                    Michelle Olson
+                                    Zhencheng Chen,
+                                    Harsh Mathur,
+                                    Quoc Nhan,
+                                    Chase Roth  -->
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" >
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="FontSize" Value="{ OnPlatform Android='35', iOS='40' }" />
+            </Style>
+
+            <Style TargetType="Button" >
+                <Setter Property="BackgroundColor" Value="#BB272361" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="BorderWidth" Value="0" />
+                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="CornerRadius" >
+                    <OnPlatform x:TypeArguments="system:Int32" >
+                        <On Platform="Android" >40</On>
+                        <On Platform="iOS" >20</On>
+                    </OnPlatform>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!-- background image-->
+            <Image
+                Source="rainbowbg.png"
+                Aspect="AspectFill"
+                AbsoluteLayout.LayoutBounds="1, 1, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                HorizontalOptions="FillAndExpand" />
+            <ScrollView
+                AbsoluteLayout.LayoutBounds="1, 1, 1, 1"
+                AbsoluteLayout.LayoutFlags="All"
+                VerticalOptions="CenterAndExpand" >
+                <Grid Margin="20,0,20,0" ColumnSpacing="20" >
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- icon-->
+                    <Frame BackgroundColor="Transparent"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalOptions="CenterAndExpand" >
+                        <Image Source="Favicon_512x512.png"
+                               Aspect="AspectFit"
+                               WidthRequest="200" />
+                    </Frame>
+
+                    <!-- title-->
+                    <Label Grid.Row="1"
+                           Text="Walking &#x0a;For &#x0a;Rochester"
+                           TextTransform="Uppercase"
+                           TextColor="#272361"
+                           FontAttributes="Bold"
+                           VerticalOptions="CenterAndExpand"
+                           HorizontalTextAlignment="Center" />
+
+                    <!-- Login -->
+                    <material:MaterialTextField
+                        VerticalOptions="End"
+                        Grid.Row="2"
+                        Placeholder="Email Address"
+                        TintColor="#272765"
+                        HelperTextColor="White"
+                        BackgroundColor="White"
+                        Text="{Binding Email}"
+                        InputType="Email"
+                        ReturnType="Next" />
+
+                    <material:MaterialTextField
+                        Grid.Row="3"
+                        Placeholder="Password"
+                        TintColor="#272765"
+                        HelperTextColor="White"
+                        BackgroundColor="White"
+                        Text="{Binding Password}"
+                        InputType="Password"
+                        ReturnType="Done" />
+
+                    <!-- loading symbol is used when logging in-->
+                    <ActivityIndicator
+                        Grid.Row="4"
+                        HeightRequest="60"
+                        Visual="Material"
+                        IsRunning="{Binding LoginActivity}"
+                        Color="#272765" />
+
+                    <!-- button to sign in-->
+                    <material:MaterialButton
+                        Grid.Row="4"
+                        HeightRequest="60"
+                        CornerRadius="30"
+                        BackgroundColor="#272765"
+                        Text="Sign in"
+                        FontSize="Medium"
+                        Command="{Binding LoginCommand}"
+                        IsVisible="{Binding LoginVisible}" />
+
+                    <!-- forgot password buttton-->
+                    <StackLayout Grid.Row="5" Orientation="Horizontal" Margin="0,20" >
+                        <Button
+                            HeightRequest="25"
+                            Padding="0"
+                            Text="Forgot Password?"
+                            HorizontalOptions="CenterAndExpand"
+                            BackgroundColor="Transparent"
+                            Command="{Binding ResetCommand}" />
+                        <!-- reguster new account Button-->
+                        <Button
+                            HeightRequest="25"
+                            Padding="0"
+                            Text="New here? Sign up"
+                            BackgroundColor="Transparent"
+                            HorizontalOptions="CenterAndExpand"
+                            Command="{Binding RegisterCommand}" />
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,289 @@
+﻿<?xml version = "1.0"
+      encoding = "utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:vm="clr-namespace:WalkingForRochester.ViewModels;assembly=WalkingForRochester"
+             x:Class="WalkingForRochester.Views.LeaderboardPage"
+             Shell.TabBarIsVisible="false"
+             Title="LEADERBOARD"
+             Visual="Material" >
+    <!--        Authors: 
+                NTID MAD TEAM
+                    Mangers:        Xiangyu Shi
+                                    Michelle Olson
+    
+                    Programmer:     Xiangyu Shi,
+                                    Michelle Olson
+                                    Zhencheng Chen,
+                                    Harsh Mathur,
+                                    Quoc Nhan,
+                                    Chase Roth  -->
+
+    <ContentPage.BindingContext>
+        <vm:LeaderboardViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True" >
+                <Setter Property="BackgroundImageSource" Value="background.png" />
+            </Style>
+            <Color x:Key="textBackground" >#4a3787</Color>
+
+            <Style TargetType="Label" >
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=Black}" />
+                <Setter Property="HorizontalOptions" Value="StartAndExpand" />
+                <Setter Property="VerticalOptions" Value="CenterAndExpand" />
+
+                <!-- <Setter Property="Padding" Value="10" /> -->
+            </Style>
+            <Style TargetType="Button" >
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="{StaticResource textBackground}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="HorizontalOptions" Value="CenterAndExpand" />
+                <Setter Property="CornerRadius" Value="10" />
+                <Setter Property="Margin" Value="-8" />
+            </Style>
+
+            <Style TargetType="Frame" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=White}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!--Buttons to handle the filter for day, week, month and a year-->
+
+            <Frame
+                Grid.ColumnSpan="4"
+                BackgroundColor="Transparent"
+                HorizontalOptions="CenterAndExpand"
+                HasShadow="False"
+                Padding="0,20,0,20" >
+                <Grid ColumnSpacing="25" >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="150" />
+                        <ColumnDefinition Width="150" />
+                    </Grid.ColumnDefinitions>
+
+                    <Picker
+                        x:Name="PickerEventColor"
+                        SelectedItem="{Binding EventPicker}"
+                        Title="Collection"
+                        BackgroundColor="{StaticResource textBackground}"
+                        TitleColor="White"
+                        HorizontalTextAlignment="Center"
+                        FontAttributes="Bold" >
+                        <Picker.Behaviors>
+                            <xct:EventToCommandBehavior
+                                EventName="SelectedIndexChanged"
+                                Command="{Binding EventPickerCommand}" />
+                        </Picker.Behaviors>
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}" >
+                                <x:String>Collection</x:String>
+                                <x:String>Distance</x:String>
+                                <x:String>Duration</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+                    <Picker
+                        Grid.Column="1"
+                        Title="Year"
+                        x:Name="PickerTimeColor"
+                        SelectedItem="{Binding TimePicker}"
+                        BackgroundColor="{StaticResource textBackground}"
+                        TitleColor="White"
+                        HorizontalTextAlignment="Center"
+                        FontAttributes="Bold" >
+                        <Picker.Behaviors>
+                            <xct:EventToCommandBehavior
+                                EventName="SelectedIndexChanged"
+                                Command="{Binding TimePickerCommand}" />
+                        </Picker.Behaviors>
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}" >
+                                <x:String>Day</x:String>
+                                <x:String>Week</x:String>
+                                <x:String>Month</x:String>
+                                <x:String>Year</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+            </Frame>
+
+            <!-- Information about the user itself-->
+            <Frame Grid.Row="1"
+                   Grid.ColumnSpan="4"
+                   CornerRadius="10"
+                   Margin="20,0,20,0"
+                   Padding="0" >
+                <CollectionView
+                    Margin="0"
+                    ItemsSource="{Binding OwnSelf}" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame CornerRadius="10" HasShadow="False" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width=".3*" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        Text="{Binding Id}"
+                                        TextColor="Black"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="CenterAndExpand"
+                                        HorizontalTextAlignment="Center" />
+                                    <Frame
+                                        Grid.Column="1"
+                                        Padding="0"
+                                        CornerRadius="25" >
+                                        <ff:CachedImage
+                                            Aspect="AspectFill"
+                                            Source="{Binding ImgUrl}"
+                                            WidthRequest="50"
+                                            HeightRequest="50"
+                                            ErrorPlaceholder="https://walkingforrochester.com/images/default_img.png" >
+                                            <ff:CachedImage.Transformations>
+                                                <fft:CircleTransformation />
+                                            </ff:CachedImage.Transformations>
+                                        </ff:CachedImage>
+                                    </Frame>
+                                    <StackLayout Grid.Column="2" Spacing="0" Margin="10,0,0,0" >
+                                        <Label
+                                            Text="{Binding Nickname}"
+                                            FontAttributes="Bold"
+                                            FontSize="16"
+                                            LineBreakMode="TailTruncation" />
+                                        <Label Text="{Binding AccountId}"
+                                               TextColor="Gray"
+                                               FontSize="12" />
+                                    </StackLayout>
+                                    <!-- SWITCH DIFF VARIABLE -->
+                                    <Label Text="{Binding Collection}"
+                                           FontSize="15"
+                                           FontAttributes="Bold"
+                                           Grid.Column="3"
+                                           HorizontalOptions="Center"
+                                           IsVisible="{Binding CollectionVisible}" />
+                                    <Label Text="{Binding Distances , StringFormat='{0:N2} mi'}"
+                                           FontSize="15"
+                                           FontAttributes="Bold"
+                                           Grid.Column="3"
+                                           HorizontalOptions="Center"
+                                           IsVisible="{Binding DistancesVisible}" />
+                                    <Label Text="{Binding DurationFormat}"
+                                           FontSize="15"
+                                           FontAttributes="Bold"
+                                           Grid.Column="3"
+                                           HorizontalOptions="Center"
+                                           IsVisible="{Binding DurationVisible}" />
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+            <!--the leaderboard list-->
+
+            <CollectionView
+                ItemsSource="{Binding Lists}"
+                Grid.Row="2"
+                Grid.ColumnSpan="4"
+                Margin="20,20,20,0" >
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" ItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame CornerRadius="10" HasShadow="False" >
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width=".3*" />
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Column="0"
+                                    Text="{Binding Id}"
+                                    TextColor="Black"
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="CenterAndExpand"
+                                    HorizontalTextAlignment="Center" />
+                                <Frame
+                                    Grid.Column="1"
+                                    Padding="0"
+                                    CornerRadius="25" >
+                                    <ff:CachedImage
+                                        Aspect="AspectFill"
+                                        Source="{Binding ImgUrl}"
+                                        WidthRequest="50"
+                                        HeightRequest="50"
+                                        ErrorPlaceholder="https://walkingforrochester.com/images/default_img.png" >
+                                        <ff:CachedImage.Transformations>
+                                            <fft:CircleTransformation />
+                                        </ff:CachedImage.Transformations>
+                                    </ff:CachedImage>
+                                </Frame>
+                                <StackLayout Grid.Column="2" Spacing="0" Margin="10,0,0,0" >
+                                    <Label
+                                        Text="{Binding Nickname}"
+                                        FontAttributes="Bold"
+                                        FontSize="16"
+                                        LineBreakMode="TailTruncation" />
+                                    <Label Text="{Binding AccountId}"
+                                           TextColor="Gray"
+                                           FontSize="12" />
+                                </StackLayout>
+
+                                <!-- SWITCH DIFF VARIABLE -->
+                                <Label Text="{Binding Collection}"
+                                       FontSize="15"
+                                       FontAttributes="Bold"
+                                       Grid.Column="3"
+                                       HorizontalOptions="Center"
+                                       IsVisible="{Binding CollectionVisible}" />
+                                <Label Text="{Binding Distances , StringFormat='{0:N2} mi'}"
+                                       FontSize="15"
+                                       FontAttributes="Bold"
+                                       Grid.Column="3"
+                                       HorizontalOptions="Center"
+                                       IsVisible="{Binding DistancesVisible}" />
+                                <Label Text="{Binding DurationFormat}"
+                                       FontSize="15"
+                                       FontAttributes="Bold"
+                                       Grid.Column="3"
+                                       HorizontalOptions="Center"
+                                       IsVisible="{Binding DurationVisible}" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

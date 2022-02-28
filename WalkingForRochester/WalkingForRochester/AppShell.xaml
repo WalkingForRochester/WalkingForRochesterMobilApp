@@ -1,0 +1,134 @@
+﻿<?xml version = "1.0"
+      encoding = "UTF-8" ?>
+
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+       xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+       xmlns:local="clr-namespace:WalkingForRochester.Views"
+       xmlns:controls="clr-namespace:WalkingForRochester.Controls"
+       xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+       xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+       xmlns:vm="clr-namespace:WalkingForRochester.ViewModels;assembly=WalkingForRochester"
+       FlyoutBackgroundColor="#333"
+       Shell.TabBarBackgroundColor="#4a3787"
+       Shell.TabBarForegroundColor="#4a3787"
+       FlyoutVerticalScrollMode="Auto"
+       x:Class="WalkingForRochester.AppShell" 
+       Visual="Material">
+
+    <Shell.BindingContext>
+        <vm:AppShellViewModel />
+    </Shell.BindingContext>
+
+    <Shell.Resources>
+        <Color x:Key="IconFgColor" >white</Color>
+
+        <Style x:Key="MaterialIcons" TargetType="{x:Type Label}" >
+            <Setter Property="FontFamily" Value="CustomMaterialFont" />
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+            <Setter Property="TextColor" Value="{DynamicResource IconFgColor}" />
+            <Setter Property="FontSize" Value="Large" />
+        </Style>
+    </Shell.Resources>
+
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid HeightRequest="300" BackgroundColor="{StaticResource TextBackground}" >
+                <ff:CachedImage
+                    Source="{Binding ImgUrl, Mode=TwoWay}"
+                    WidthRequest="130"
+                    HeightRequest="130"
+                    Aspect="AspectFill"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    ErrorPlaceholder="https://walkingforrochester.com/images/default_img.png"
+                    Margin="0,-50,0,0" >
+                    <ff:CachedImage.Transformations>
+                        <fft:CircleTransformation />
+                    </ff:CachedImage.Transformations>
+                </ff:CachedImage>
+
+                <Frame
+                    Grid.Row="0"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    BackgroundColor="#55000000"
+                    Margin="0,0,0,50"
+                    Padding="0"
+                    HeightRequest="130"
+                    WidthRequest="130"
+                    CornerRadius="65"
+                    HasShadow="False">
+                    <Grid>
+                        <Label
+                            Style="{StaticResource MaterialIcons}"
+                            Text="border_color" />
+                    </Grid>
+                </Frame>
+
+                <Label
+                    Text="{Binding Nickname}"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    Margin="0,0,0,-150"
+                    FontSize="30"
+                    TextColor="white" />
+
+                <ImageButton
+                    Grid.Row="0"
+                    BackgroundColor="#00000000"
+                    Command="{Binding UserProfileCommand}" />
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Image HeightRequest="45" Source="{Binding Icon}" />
+                <Label Grid.Column="1" Text="{Binding Title}"
+                       VerticalTextAlignment="Center"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       TextTransform="Uppercase"
+                       Padding="25, 0" />
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <!-- Flyout Menu - Start -->
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent Title="Log a walk" Route="walk" ContentTemplate="{DataTemplate local:WalkPage}" Icon="redBar.png" />
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent Title="Leaderboard" Route="leaderboard" ContentTemplate="{DataTemplate local:LeaderboardPage}"
+                      Icon="yellowBar.png" />
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent Title="News Feed" Route="news" ContentTemplate="{DataTemplate local:NewsFeedPage}"
+                      Icon="greenBar.png" />
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent Title="Waste Management Protocol" Route="waste"
+                      ContentTemplate="{DataTemplate local:WasteManagementProtocolPage}" Icon="blueBar.png" />
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent Title="Contact Information" Route="contact"
+                      ContentTemplate="{DataTemplate local:ContactInformationPage}" Icon="purpleBar.png" />
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent Title="About Us" Route="about" ContentTemplate="{DataTemplate local:AboutPage}"
+                      Icon="lightPurpleBar.png" />
+    </FlyoutItem>
+    <FlyoutItem FlyoutDisplayOptions="AsMultipleItems" >
+        <ShellContent Title="User Profile" Route="profile" ContentTemplate="{DataTemplate local:UserProfilePage}"
+                      IsVisible="False" Icon="lightPurpleBar.png" />
+    </FlyoutItem>
+    <!-- Flyout Menu - End -->
+</Shell>

@@ -1,0 +1,94 @@
+﻿<?xml version = "1.0"
+      encoding = "utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WalkingForRochester.ViewModels;assembly=WalkingForRochester"
+             x:Class="WalkingForRochester.Views.ContactInformationPage"
+             Shell.TabBarIsVisible="false" >
+    <!--         Authors: 
+                NTID MAD TEAM
+                    Mangers:        Xiangyu Shi
+                                    Michelle Olson
+    
+                    Programmer:     Xiangyu Shi,
+                                    Michelle Olson
+                                    Zhencheng Chen,
+                                    Harsh Mathur,
+                                    Quoc Nhan,
+                                    Chase Roth  -->
+
+    <ContentPage.BindingContext>
+        <vm:ContactViewModel />
+    </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundImageSource" Value="background.png"/>
+            </Style>
+            <Style TargetType="Button" >
+                <Setter Property="BackgroundColor" Value="Transparent" />
+                <Setter Property="ContentLayout" Value="Top, 0" />
+                <Setter Property="CornerRadius" Value="30" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height=".5*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" >
+                <Image Source="ContactImage.png"
+                       VerticalOptions="StartAndExpand" />
+                <Grid Margin="40" >
+                    <Image Source="Favicon_512x512.png"
+                           WidthRequest="50"
+                           HeightRequest="50" />
+                </Grid>
+            </Grid>
+
+            <!--for email icon-->
+            <ImageButton Grid.Row="1"
+                         Padding="20"
+                         VerticalOptions="End"
+                         Aspect="AspectFit"
+                         BackgroundColor="Transparent"
+                         Source="email.png"
+                         Command="{Binding EmailCommand}"
+                         Margin="0,30,0,0" />
+
+            <Grid
+                Grid.Row="2" >
+                <!--for phone icon-->
+                <ImageButton Grid.Column="0"
+                             Padding="20"
+                             Aspect="AspectFit"
+                             BackgroundColor="Transparent"
+                             Source="phoneShadow.png"
+                             Command="{Binding PhoneCommand}" />
+
+                <!--for facebook icon-->
+                <ImageButton Grid.Column="1"
+                             Padding="20"
+                             Aspect="AspectFit"
+                             BackgroundColor="Transparent"
+                             Source="FacebookShadow.png"
+                             Command="{Binding FacebookCommand}" />
+
+                <!--for website icon-->
+                <ImageButton Grid.Column="2"
+                             Padding="20"
+                             Aspect="AspectFit"
+                             BackgroundColor="Transparent"
+                             Source="Favicon_86x86.png"
+                             Command="{Binding OfficialCommand}" />
+
+            </Grid>
+
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

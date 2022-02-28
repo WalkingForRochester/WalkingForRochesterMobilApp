@@ -1,0 +1,233 @@
+<?xml version = "1.0"
+      encoding = "utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WalkingForRochester.Views.UserProfilePage"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:vm="clr-namespace:WalkingForRochester.ViewModels;assembly=WalkingForRochester"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             Shell.TabBarIsVisible="false"
+             Title="Profile"
+             Visual="Material" >
+    <!--         Authors: 
+                NTID MAD TEAM
+                    Mangers:        Xiangyu Shi
+                                    Michelle Olson
+    
+                    Programmer:     Xiangyu Shi,
+                                    Michelle Olson
+                                    Zhencheng Chen,
+                                    Harsh Mathur,
+                                    Quoc Nhan,
+                                    Chase Roth  -->
+
+    <ContentPage.BindingContext>
+        <vm:UserProfileViewModel />
+    </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True" >
+                <Setter Property="BackgroundImageSource" Value="background.png" />
+            </Style>
+            <Color x:Key="textBackground" >#4a3787</Color>
+
+            <Style TargetType="Label" >
+                <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=Black}" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="Padding" Value="10" />
+            </Style>
+
+            <Style x:Key="insideGrid" TargetType="Label" >
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="TextColor" Value="Black" />
+                <Setter Property="HorizontalOptions" Value="Center" />
+            </Style>
+
+            <Style x:Key="LabelSpan" TargetType="Label" >
+                <Setter Property="HorizontalTextAlignment" Value="End" />
+                <Setter Property="LineHeight" Value="-10" />
+                <Setter Property="TextColor" Value="#444" />
+
+            </Style>
+
+            <Style x:Key="FrameStyle" TargetType="Frame" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=White}" />
+                <Setter Property="BorderColor" Value="Transparent" />
+            </Style>
+            <Style TargetType="Frame" >
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=White}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <Frame
+                    BackgroundColor="White"
+                    Margin="10"
+                    CornerRadius="15" >
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <!--avator img  how to let user change image-->
+                            <Frame
+                                HasShadow="False"
+                                Style="{StaticResource FrameStyle}"
+                                HorizontalOptions="CenterAndExpand"
+                                VerticalOptions="CenterAndExpand" >
+                                <ff:CachedImage
+                                    Source="{Binding ImageUri, Mode=TwoWay}"
+                                    WidthRequest="106"
+                                    HeightRequest="106"
+                                    Aspect="AspectFill"
+                                    HorizontalOptions="Center"
+                                    VerticalOptions="Center"
+                                    ErrorPlaceholder="https://walkingforrochester.com/images/default_img.png" >
+                                    <ff:CachedImage.Transformations>
+                                        <fft:CircleTransformation />
+                                    </ff:CachedImage.Transformations>
+                                </ff:CachedImage>
+                            </Frame>
+                            <!--Binding nickname-->
+
+                            <Frame
+                                HasShadow="False"
+                                Grid.Column="1"
+                                Style="{StaticResource FrameStyle}" >
+                                <StackLayout>
+                                    <Label
+                                        Style="{StaticResource LabelSpan}"
+                                        Text="{Binding Nickname, Mode=TwoWay}"
+                                        FontAttributes="Bold"
+                                        LineBreakMode="TailTruncation"
+                                        FontSize="20" />
+
+                                    <!--Binding Id-->
+                                    <Label
+                                        Style="{StaticResource LabelSpan}" >
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Account ID:" />
+                                                <Span Text="{Binding AccountId, Mode=TwoWay}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <!--{Binding email?-->
+                                    <Label
+                                        Text="{Binding Email, Mode=TwoWay}"
+                                        LineBreakMode="TailTruncation"
+                                        Style="{StaticResource LabelSpan}" />
+                                    <!--Binding phone number-->
+                                    <Label
+                                        Text="{Binding PhoneNumber, Mode=TwoWay}"
+                                        Style="{StaticResource LabelSpan}" />
+                                </StackLayout>
+                            </Frame>
+
+                        </Grid>
+
+                        <Frame
+                            Grid.Row="1"
+                            Padding="0,20,0,0"
+                            HasShadow="False" >
+                            <Grid RowSpacing="10" >
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Frame Grid.Row="0" >
+                                    <StackLayout>
+                                        <Label Text="Distances:" FontSize="20" FontAttributes="Bold" />
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="Today:" />
+                                            <Label Grid.Row="0" Grid.Column="1"
+                                                   Text="{Binding Distance,StringFormat='{0} mi', Mode=TwoWay}" />
+                                            <Label Grid.Row="1" Grid.Column="0" Text="Overall:" />
+                                            <Label Grid.Row="1" Grid.Column="1"
+                                                   Text="{Binding TotalDistance,StringFormat='{0} mi', Mode=TwoWay}" />
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                                <Frame Grid.Row="1" >
+                                    <StackLayout>
+                                        <Label Text="Durations:" FontSize="20" FontAttributes="Bold" />
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+                                            <Label Grid.Row="0" Grid.Column="0" Text="Today:" />
+                                            <Label Grid.Row="0" Grid.Column="1" Text="{Binding Duration, Mode=TwoWay}" />
+                                            <Label Grid.Row="1" Grid.Column="0" Text="Overall:" />
+                                            <Label Grid.Row="1" Grid.Column="1"
+                                                   Text="{Binding TotalDuration, Mode=TwoWay}" />
+                                        </Grid>
+                                    </StackLayout>
+                                </Frame>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </Frame>
+
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <!--Edit button-->
+                    <Frame
+                        Margin="10,0,10,10"
+                        CornerRadius="15" >
+                        <Button
+                            Text="Edit Profile"
+                            BackgroundColor="#009966"
+                            HeightRequest="50"
+                            TextColor="White"
+                            Command="{Binding ProfileCommand}" />
+                    </Frame>
+
+                    <!--sign out button-->
+                    <Frame
+                        Margin="10,0,10,10"
+                        CornerRadius="15"
+                        Grid.Column="1" >
+                        <Button
+                            Text="Logout"
+                            BackgroundColor="#FF6666"
+                            HeightRequest="50"
+                            TextColor="White"
+                            Command="{Binding LogoutCommand}" />
+                    </Frame>
+
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

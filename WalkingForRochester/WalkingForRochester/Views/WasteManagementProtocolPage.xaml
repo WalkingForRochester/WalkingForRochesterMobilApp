@@ -1,0 +1,160 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="WalkingForRochester.Views.WasteManagementProtocolPage"
+             Shell.TabBarIsVisible="{OnPlatform Android=false, iOS= false}"
+             Title="WASTE MANAGEMENT"
+             Visual="Material">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+                <Setter Property="BackgroundImageSource" Value="background.png"/>
+            </Style>
+            <Color x:Key="textBackground">#4a3787</Color>
+           
+            <Style TargetType="Label">
+                <Setter Property="FontSize" Value="{OnPlatform Android='20',
+                                              iOS='16'}"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="BackgroundColor" Value="WhiteSmoke"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="Padding" Value="{OnPlatform Android='10',
+                                                        iOS='0'}"/>
+            </Style>
+            <Style TargetType="Frame">
+                <Setter Property="BackgroundColor" Value="{StaticResource textBackground}"/>
+                <Setter Property="CornerRadius" Value="15"/>
+            </Style>
+            <Style TargetType="StackLayout">
+                <Setter Property="Padding" Value="{OnPlatform Android='5,5',
+                                                            iOS='0'}"/>
+            </Style>       
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+
+            <StackLayout Margin="20">
+                <!-- Remember note -->             
+                    <Grid>
+                        <Image Source="TrashPickUp.png" />
+                       
+                        <Label Text="Remember"
+                           TextColor="Yellow"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="50"
+                           BackgroundColor= "Transparent"
+                           VerticalOptions="CenterAndExpand"/>
+                    </Grid>
+                
+                <Frame>
+                    <Label Text="Always wear gloves to ensure your safety. Having a garbage bag or bucket will help collect the litter you come across. Discard the items appropriately in your personal toter or at a public garbage/recyclable location. Also, if you come across an item that you feel uncomfortable or unsafe in discarding then call 311 and the city of Rochester will address that for you. If a city employee is not there in a timely manner then please contact our office and tell us about the situation."
+                           BackgroundColor= "{StaticResource textBackground}"
+                           TextColor="White" />
+                </Frame>
+
+                <!-- This is for items that is for everyday trash -->
+                <Grid Margin="0,15,0,0">
+                    <Image Source="bottlesPickUp.png" />
+                    <Label Text="items in everyday trash"
+                           TextColor="White"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           FontSize="25"
+                           FontAttributes="Bold"
+                           VerticalOptions="CenterAndExpand"
+                           TextTransform="Uppercase"
+                           BackgroundColor="Transparent"/>
+                </Grid>
+                    
+                <Frame BackgroundColor="WhiteSmoke">
+                    <StackLayout>
+                        <Label Text="&#x2022; Diapers"/>
+                        <Label Text="&#x2022; Disposable razors"/>
+                        <Label Text="&#x2022; Cactus and palm branches"/>
+                        <Label Text="&#x2022; Cat litter and pet feces"/>
+                        <Label Text="&#x2022; Hoses and wire"/>
+                        <Label Text="&#x2022; Juice boxes/pouches"/>
+                        <Label Text="&#x2022; Non-fluorescent light bulbs"/>
+                        <Label Text="&#x2022; Sheet glass (windows, mirrors, etc.)"/>
+                        <Label Text="&#x2022; Foam cups or packing materials"/>
+                        <Label Text="&#x2022; Treated wood (painted, stained, etc.)"/>
+                        <Label Text="&#x2022; Glassware and ceramic dishes/cups "/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- This is for items that is placed in curbside recycling  -->
+                <Frame Margin="0,15,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Image Source="greenTrashCan.png"/>
+                        <Label Text="The items below can be placed in your curbside recycling containers, bins or totes. These items should be clean and loose — remove from any additional packaging and do not bag them."                       
+                               TextColor="White"
+                               FontAttributes="Bold"
+                               BackgroundColor= "Transparent"
+                               VerticalOptions="CenterAndExpand"    
+                               Grid.Column="1"
+                               Padding="10,0,0,0"/>
+                    </Grid>
+                </Frame>
+                
+                <Frame BackgroundColor="WhiteSmoke">
+                    <StackLayout >
+                        <Label Text="&#x2022; All plastics #1-7 (except foam cups or packing materials)"/>
+                        <Label Text="&#x2022; Aluminum foil products (cans, baking tins and foil)"/>
+                        <Label Text="&#x2022; Paper bags"/>
+                        <Label Text="&#x2022; Cardboard"/>
+                        <Label Text="&#x2022; Clean paper"/>
+                        <Label Text="&#x2022; Glass containers"/>
+                        <Label Text="&#x2022; Scrap metal (cookie sheets, utensils)"/>
+                    </StackLayout>
+                </Frame>
+
+                <!-- This is for items that is too hazardous -->
+                <Frame Margin="0,20,0,0">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="redTrashCan.png"/>
+                        <Label TextColor="White"
+                               FontAttributes="Bold"
+                               BackgroundColor= "{StaticResource textBackground}"
+                               VerticalOptions="CenterAndExpand"
+                               Grid.Column="1">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="The following items are too "/>
+                                    <Span Text="HAZARDOUS" TextColor="Yellow"/>
+                                    <Span Text=" for recycling or disposal in a landfill. Contact the city of Rochester at 311 to inform them. If a city employee is not there in a timely manner then please contact our office and tell us about the situation."/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                    </Grid>                    
+                </Frame>
+
+                <Frame BackgroundColor="WhiteSmoke">
+                    <StackLayout >
+                        <Label Text="&#x2022; Paint, stain, varnish, thinner and adhesives"/>
+                        <Label Text="&#x2022; Automotive products such as old fuel, anti-freeze, brake fluid, motor oil and oil filters"/>
+                        <Label Text="&#x2022; Household cleaners with ammonia or bleach"/>
+                        <Label Text="&#x2022; Aerosol cans"/>
+                        <Label Text="&#x2022; Fluorescent light bulbs and lamps"/>
+                        <Label Text="&#x2022; Computer equipment"/>
+                        <Label Text="&#x2022; Dead animals"/>
+                        <Label Text="&#x2022; Garden products including pesticides, herbicides and fertilizers"/>
+                        <Label Text="&#x2022; Propane tanks and fire extinguishers"/>
+                        <Label Text="&#x2022; Pool or photographic chemicals"/>
+                        <Label Text="&#x2022; Thermostats, thermometers and other items containing mercury"/>
+                        <Label Text="&#x2022; Expired prescriptions and non-prescription medications (no controlled substances)"/>
+                        <Label Text="&#x2022; Sharps (syringes, needles, etc.)*"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout> 
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

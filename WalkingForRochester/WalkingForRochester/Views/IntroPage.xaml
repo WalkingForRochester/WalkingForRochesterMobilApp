@@ -1,0 +1,87 @@
+<?xml version = "1.0"
+      encoding = "utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:WalkingForRochester.ViewModels;assembly=WalkingForRochester"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material"
+             xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+             xmlns:ff="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:fft="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             x:Class="WalkingForRochester.Views.IntroPage" 
+             Visual="Material">
+
+    <ContentPage.BindingContext>
+        <vm:IntroViewModel />
+    </ContentPage.BindingContext>
+    
+    <ContentPage.Resources>
+        <Style TargetType="ContentPage" ApplyToDerivedTypes="True">
+            <Setter Property="BackgroundImageSource" Value="background.png"/>
+        </Style>
+        <Style TargetType="Frame">
+            <Setter Property="BackgroundColor" Value="{AppThemeBinding Light=White, Dark=White}"/>
+            <Setter Property="CornerRadius" Value="10"/>
+        </Style>
+        
+        <Style TargetType="Label" >
+            <Setter Property="TextColor" Value="{AppThemeBinding Light=Black, Dark=Black}"/>
+        </Style>
+    </ContentPage.Resources>
+
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" >
+            <On Platform="iOS" Value="20,50,20,20" />
+            <On Platform="Android" Value="20,20,20,20" />
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+        <ScrollView>
+            
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Frame
+                BackgroundColor="#594887" >
+                <Label
+                    Text="announcement"
+                    BackgroundColor="Transparent"
+                    TextTransform="Uppercase"
+                    HorizontalTextAlignment="Center"
+                    VerticalTextAlignment="Center"
+                    TextColor="White"
+                    FontSize="Large"
+                    HeightRequest="50"
+                    FontAttributes="Bold"/>
+            </Frame>
+
+            <Frame
+                VerticalOptions="FillAndExpand"
+                Grid.Row="1" >
+                <Label
+                    Text="Walking For Rochester wants to track your location at all times ('ALWAYS') when you are volunteering to track where you are picking up litter. We need to track your location in background so you can put your phone away while you are volunteering and be confident that we are keeping track of your route. If you elect not to consent then please contact us directly to log your work."
+                    TextColor="Black"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    FontSize="Subtitle"
+                    LineHeight="1.5"/>
+            </Frame>
+
+            <Frame Grid.Row="2" >
+                <material:MaterialButton
+                    Text="I understand"
+                    TextTransform="Uppercase"
+                    BackgroundColor="#82B0D1"
+                    HeightRequest="70"
+                    Command="{Binding OkCommand}" />
+            </Frame>
+        </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
